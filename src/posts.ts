@@ -6,9 +6,17 @@ interface Post {
     title: string;
   }
 
-export function testSyncFunction() {
-    console.log('THIS IS A SYNC FUNCTION')
-    return "blabla"
+// export function testSyncFunction() {
+//     console.log('THIS IS A SYNC FUNCTION')
+//     return "blabla"
+// }
+
+const getPostRatings = (post: Post) => { 
+    //randomly generate a rating for a post
+    const rating = Math.floor(Math.random() * 5) + 1;
+
+    addSpanAttributes({ rating });
+    return rating;
 }
 
 export async function fetchPosts() {
@@ -22,10 +30,9 @@ export async function fetchPosts() {
     responseLength: response.data.length
   }, true);
 
-  testSyncFunction()
-
   return response.data.map(post => ({
     id: post.id,
-    title: post.title.toUpperCase()
+    title: post.title.toUpperCase(),
+    rating: getPostRatings(post)
   }));
 }
