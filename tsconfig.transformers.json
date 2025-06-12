@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+      "target": "ES2022",
+      "module": "CommonJS",
+      "moduleResolution": "node",
+      "outDir": "ts-transformers/dist",
+      "strict": true
+    },
+    "include": ["ts-transformers/trace-all-functions.ts"]
+  }

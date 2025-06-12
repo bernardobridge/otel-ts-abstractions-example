@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+      "target": "ES2022",
+      "module": "NodeNext",
+      "moduleResolution": "nodenext",
+      "experimentalDecorators": true,
+      "useDefineForClassFields": true,
+      "strict": true,
+      "plugins": [
+        {
+          "transform": "./ts-transformers/dist/trace-all-functions.cjs",
+            "type": "program"
+        }
+      ],
+      "outDir": "./dist"
+    },
+    "include": ["src"]
+  }
