@@ -31,9 +31,28 @@ export default function traceAllFunctions(): ts.TransformerFactory<ts.SourceFile
       }
 
       function shouldSkip(node: ts.Node): boolean {
-        const comments = ts.getLeadingCommentRanges(sourceFile.getFullText(), node.getFullStart());
-        if (!comments) return false;
-        return comments.some(c => sourceFile.getFullText().slice(c.pos, c.end).includes('no-trace'));
+        // For arrow functions
+        if (ts.isArrowFunction(node)) {
+          const body = node.body;
+          if (ts.isBlock(body)) {
+            // For block body arrow functions, check the block's text
+            return body.getText().includes('//no-trace');
+          }
+          // For single-line arrow functions, check the entire body
+          return body.getText().includes('//no-trace');
+        }
+
+        // For regular function declarations
+        if (ts.isFunctionDeclaration(node) && node.body) {
+          return node.body.getText().includes('//no-trace');
+        }
+
+        // For function expressions
+        if (ts.isFunctionExpression(node) && node.body) {
+          return node.body.getText().includes('//no-trace');
+        }
+
+        return false;
       }
 
       function wrapFunction(name: string, implExpr: ts.Expression, isExported: boolean): ts.Statement[] {
