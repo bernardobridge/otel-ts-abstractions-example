@@ -2,21 +2,22 @@
     "name": "otel-ts-abstractions-example",
     "type": "module",
     "scripts": {
-      "build:transformers": "tsc -p tsconfig.transformers.json; mv ts-transformers/dist/trace-all-functions.js ts-transformers/dist/trace-all-functions.cjs",
-      "build": "tsc",
-      "start": "node --require ./dist/telemetry/register-otel.js dist/app.js"
+        "build:transformers": "tsc -p tsconfig.transformers.json; mv ts-transformers/dist/trace-all-functions.js ts-transformers/dist/trace-all-functions.cjs",
+        "build": "tsc",
+        "esbuild": "node esbuild.config.mjs",
+        "start": "node --require ./dist/telemetry/register-otel.js dist/app.js"
     },
     "devDependencies": {
-      "@types/express": "^5.0.3",
-      "ts-node": "^10.9.2",
-      "ts-patch": "^3.3.0",
-      "typescript": "^5.8.3"
+        "@types/express": "^5.0.3",
+        "esbuild": "^0.25.5",
+        "ts-node": "^10.9.2",
+        "ts-patch": "^3.3.0",
+        "typescript": "^5.8.3"
     },
     "dependencies": {
-      "@opentelemetry/auto-instrumentations-node": "^0.60.0",
-      "axios": "^1.9.0",
-      "dotenv": "^16.5.0",
-      "express": "^4.18.2"
+        "@opentelemetry/auto-instrumentations-node": "^0.60.0",
+        "axios": "^1.9.0",
+        "dotenv": "^16.5.0",
+        "express": "^4.18.2"
     }
-  }
-  
+}
